@@ -241,7 +241,7 @@ def split_train_test(X, y, test_size=0.2, random_state=42):
 
 if __name__ == "__main__":
     # Path file
-    input_file = "../diabetes_raw.csv"
+    input_file = "./diabetes_raw.csv"
     output_file = "diabetes_preprocessing.csv"
     
     # Jalankan preprocessing pipeline
