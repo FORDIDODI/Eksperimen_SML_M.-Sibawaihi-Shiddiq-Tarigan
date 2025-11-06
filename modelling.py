@@ -20,16 +20,16 @@ mlflow.set_tracking_uri("http://127.0.0.1:5000")
 mlflow.set_experiment("Diabetes_Prediction_Experiment")
 
 print("=" * 60)
-print("🚀 MEMULAI TRAINING MODEL")
+print("MEMULAI TRAINING MODEL")
 print("=" * 60)
 
 # ============================================================
 # 1. LOAD DATA
 # ============================================================
 
-print("\n📂 Memuat data preprocessing...")
+print("\nMemuat data preprocessing...")
 df = pd.read_csv('diabetes_preprocessing.csv')
-print(f"✅ Data berhasil dimuat! Shape: {df.shape}")
+print(f"Data berhasil dimuat! Shape: {df.shape}")
 
 # Split features dan target
 X = df.drop('Outcome', axis=1)
@@ -48,7 +48,7 @@ print(f"Test set: {X_test.shape[0]} samples")
 # ============================================================
 
 print("\n" + "=" * 60)
-print("🤖 TRAINING MODEL")
+print("TRAINING MODEL")
 print("=" * 60)
 
 # Enable autologging
@@ -64,7 +64,7 @@ with mlflow.start_run(run_name="RandomForest_Basic"):
     mlflow.log_param("n_features", X.shape[1])
     
     # Create and train model
-    print("\n⏳ Training Random Forest Classifier...")
+    print("\nTraining Random Forest Classifier...")
     model = RandomForestClassifier(
         n_estimators=100,
         max_depth=10,
@@ -73,7 +73,7 @@ with mlflow.start_run(run_name="RandomForest_Basic"):
     )
     
     model.fit(X_train, y_train)
-    print("✅ Model berhasil dilatih!")
+    print("Model berhasil dilatih!")
     
     # Predictions
     y_pred_train = model.predict(X_train)
@@ -87,7 +87,7 @@ with mlflow.start_run(run_name="RandomForest_Basic"):
     test_f1 = f1_score(y_test, y_pred_test)
     
     print("\n" + "=" * 60)
-    print("📊 HASIL EVALUASI MODEL")
+    print("HASIL EVALUASI MODEL")
     print("=" * 60)
     print(f"Training Accuracy  : {train_acc:.4f}")
     print(f"Test Accuracy      : {test_acc:.4f}")
@@ -96,22 +96,22 @@ with mlflow.start_run(run_name="RandomForest_Basic"):
     print(f"Test F1-Score      : {test_f1:.4f}")
     
     # Classification Report
-    print("\n📋 Classification Report:")
+    print("\nClassification Report:")
     print(classification_report(y_test, y_pred_test))
     
     # Confusion Matrix
-    print("🔢 Confusion Matrix:")
+    print("Confusion Matrix:")
     cm = confusion_matrix(y_test, y_pred_test)
     print(cm)
     
-    print("\n✅ Model dan metrics berhasil disimpan ke MLflow!")
-    print(f"🔗 Tracking URI: {mlflow.get_tracking_uri()}")
-    print(f"📁 Artifact URI: {mlflow.get_artifact_uri()}")
+    print("\nModel dan metrics berhasil disimpan ke MLflow!")
+    print(f"Tracking URI: {mlflow.get_tracking_uri()}")
+    print(f"Artifact URI: {mlflow.get_artifact_uri()}")
 
 print("\n" + "=" * 60)
-print("🎉 TRAINING SELESAI!")
+print("TRAINING SELESAI!")
 print("=" * 60)
-print("\n💡 Cara melihat hasil:")
+print("\nCara melihat hasil:")
 print("1. Buka terminal baru")
 print("2. Jalankan: mlflow ui")
 print("3. Buka browser: http://127.0.0.1:5000")
