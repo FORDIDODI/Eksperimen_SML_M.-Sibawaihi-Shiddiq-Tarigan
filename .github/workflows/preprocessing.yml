@@ -10,6 +10,10 @@ on:
       - 'preprocessing/automate_*.py'
   workflow_dispatch:  # Manual trigger
 
+# Add permissions for pushing
+permissions:
+  contents: write
+
 jobs:
   preprocessing:
     runs-on: ubuntu-latest
@@ -17,7 +21,7 @@ jobs:
     steps:
       # Step 1: Checkout repository
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         
       # Step 2: Setup Python
       - name: Setup Python 3.12
@@ -49,7 +53,7 @@ jobs:
           
       # Step 6: Upload artifact
       - name: Upload Preprocessing Result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: preprocessed-data
           path: diabetes_preprocessing.csv
@@ -64,7 +68,5 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update: Preprocessing completed at $(date)"
           
       - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+        run: |
+          git push
