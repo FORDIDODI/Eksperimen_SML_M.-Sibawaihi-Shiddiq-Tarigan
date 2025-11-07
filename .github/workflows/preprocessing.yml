@@ -34,15 +34,14 @@ jobs:
       # Step 4: Run preprocessing script
       - name: Run Preprocessing Script
         run: |
-          cd preprocessing
-          python automate_*.py
+          python preprocessing/automate_*.py
           
       # Step 5: Verify output file
       - name: Verify Preprocessing Output
         run: |
-          if [ -f "preprocessing/diabetes_preprocessing.csv" ]; then
+          if [ -f "diabetes_preprocessing.csv" ]; then
             echo "File preprocessing berhasil dibuat"
-            echo "Ukuran file: $(wc -l < preprocessing/diabetes_preprocessing.csv) baris"
+            echo "Ukuran file: $(wc -l < diabetes_preprocessing.csv) baris"
           else
             echo "File preprocessing tidak ditemukan"
             exit 1
@@ -50,10 +49,10 @@ jobs:
           
       # Step 6: Upload artifact
       - name: Upload Preprocessing Result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: preprocessed-data
-          path: preprocessing/diabetes_preprocessing.csv
+          path: diabetes_preprocessing.csv
           retention-days: 30
           
       # Step 7: Commit and push hasil preprocessing
@@ -61,8 +60,8 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add preprocessing/diabetes_preprocessing.csv
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-update: Preprocessing completed at $(date)"
+          git add diabetes_preprocessing.csv
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update: Preprocessing completed at $(date)"
           
       - name: Push Changes
         uses: ad-m/github-push-action@master
