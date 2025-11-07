@@ -224,7 +224,7 @@ def split_train_test(X, y, test_size=0.2, random_state=42):
     Returns:
         tuple: (X_train, X_test, y_train, y_test)
     """
-    print("\n🔧 Split data train-test...")
+    print("\Split data train-test...")
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_size, random_state=random_state, stratify=y
     )
@@ -240,9 +240,20 @@ def split_train_test(X, y, test_size=0.2, random_state=42):
 # ============================================================
 
 if __name__ == "__main__":
-    # Path file
-    input_file = "./diabetes_raw.csv"
-    output_file = "diabetes_preprocessing.csv"
+    import os
+    
+    # Auto-detect path based on environment
+    if os.path.exists("diabetes_raw.csv"):
+        input_file = "diabetes_raw.csv"
+        output_file = "diabetes_preprocessing.csv"
+    elif os.path.exists("../diabetes_raw.csv"):
+        input_file = "../diabetes_raw.csv"
+        output_file = "diabetes_preprocessing.csv"
+    else:
+        raise FileNotFoundError("diabetes_raw.csv tidak ditemukan!")
+    
+    print(f"Input file path: {input_file}")
+    print(f"Output file path: {output_file}")
     
     # Jalankan preprocessing pipeline
     X_scaled, y, df_final, scaler = preprocess_pipeline(input_file, output_file)
@@ -251,4 +262,4 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = split_train_test(X_scaled, y)
     
     print("\nScript selesai dijalankan!")
-    print("File hasil: diabetes_preprocessing.csv")
+    print(f"File hasil: {output_file}")
