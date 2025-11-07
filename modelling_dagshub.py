@@ -51,4 +51,4 @@ with mlflow.start_run(run_name="DagsHub_Advanced"):
     mlflow.sklearn.log_model(model, "model")
     
     print(f"✅ Model logged to DagsHub!")
-    print(f"🔗 View at: https://dagshub.com/username/diabetes-mlops.mlflow")
+    print(f"🔗 View at: https://dagshub.com/FORDIDODI/diabetes-mlops.mlflow")
