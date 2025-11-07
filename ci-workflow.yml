@@ -48,7 +48,7 @@ jobs:
           cp -r mlruns artifacts/ || echo "No mlruns folder"
           
       - name: Upload Artifacts to GitHub
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: model-artifacts
           path: artifacts/
@@ -97,7 +97,7 @@ jobs:
           echo "Pull command: docker pull ${{ secrets.DOCKER_USERNAME }}/diabetes-model:latest" >> docker_hub_link.txt
           
       - name: Upload Docker Info
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-info
           path: docker_hub_link.txt
