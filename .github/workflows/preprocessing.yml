@@ -21,7 +21,7 @@ jobs:
     steps:
       # Step 1: Checkout repository
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       # Step 2: Setup Python
       - name: Setup Python 3.12
@@ -53,7 +53,7 @@ jobs:
           
       # Step 6: Upload artifact
       - name: Upload Preprocessing Result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: preprocessed-data
           path: diabetes_preprocessing.csv
