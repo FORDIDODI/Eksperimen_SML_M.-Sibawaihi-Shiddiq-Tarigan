@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 # Initialize DagsHub
-dagshub.init(repo_owner='username', repo_name='diabetes-mlops', mlflow=True)
+dagshub.init(repo_owner='FORDIDODI', repo_name='diabetes-mlops', mlflow=True)
 
 # Load data
 df = pd.read_csv('diabetes_preprocessing.csv')
