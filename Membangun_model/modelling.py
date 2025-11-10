@@ -74,6 +74,10 @@ with mlflow.start_run(run_name="RandomForest_Basic"):
     
     model.fit(X_train, y_train)
     print("Model berhasil dilatih!")
+
+    # Simpan model secara eksplisit ke MLflow
+    mlflow.sklearn.log_model(model, artifact_path="model")
+
     
     # Predictions
     y_pred_train = model.predict(X_train)
